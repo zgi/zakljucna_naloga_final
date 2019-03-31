@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+{% block title %}Preberi sporocilo{% endblock title %}
+{% block preberi %}
+<div class="col-sm border p-2 bg-white">
+        <div class="row">
+        <div class="col-sm">
+        <p>Zadeva:<h3 class="shorText">{{ sporocilo.zadeva }}</h3></a></p>
+        </div>
+        <div class="col-sm">
+        <h5>Od: <a class="nounderline" href="/novo?email={{ sporocilo.posiljatelj }}">{{ sporocilo.posiljatelj }}</a></h5>
+        </div>
+        <div class="col-3">
+        <!--{% if sporocilo.prebrano %}-->
+            <!--<p>Prebrano</p>-->
+        <!--{% else %}-->
+            <!--<p>Novo</p>-->
+        <!--{% endif %}-->
+        <h6>Prejeto: {{ sporocilo.nastanek }}</h6>
+        </div>
+    </div>
+      <div class="row justify-content-center p-2">
+        <div class="col-11 border">
+            <p>{{ sporocilo.sporocilo }}</p>
+        </div>
+    </div>
+        <div class="row p-3">
+            <div class="col">
+            <button class="btn btn-dark" onclick="location.href = '/novo?email={{ sporocilo.posiljatelj }}'">Odgovori</button>
+            <button class="btn btn-danger" onclick="window.history.back()">Nazaj</button>
+            </div>
+        </div>
+
+</div>
+
+{% endblock preberi %}

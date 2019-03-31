@@ -1,0 +1,51 @@
+{% extends 'index.html' %}
+{% block title%}Stiki{% endblock title %}
+{% block pozdrav %}
+<div class="col-sm border p-2 bg-white">
+<h2>Pozdravljen <span>{{ user.email() }}</span>, ki si uporabnik bMaila, legende brazilskega miljonarja!</h2>
+    <div class="col-sm border p-2 bg-light">
+<h3>Vreme za mesto {{ vreme.name }}</h3>
+<p>(based on IP address)</p>
+        <div class="row justify-content-center">
+        <div class="col-4 p-2 bg-dark text-light">
+            <div class="row justify-content-center">
+<h4>Trenutna temperatura: {{ vreme.main.temp}} °C</h4>
+<h4> Zračna vlaga:  {{ vreme.main.humidity }} %RH</h4>
+<h4> Zračni pritisk:  {{ vreme.main.pressure }} mBar</h4>
+
+{% if vreme.weather.0.description == 'clear sky' %}
+    {% set img = '01d.png' %}
+    {% set text = 'modro nebo' %}
+{% elif vreme.weather.0.description == 'few clouds' %}
+    {% set img = '02d.png' %}
+    {% set text = 'nekaj oblackov' %}
+{% elif vreme.weather.0.description == 'scattered clouds' %}
+    {% set img = '03d.png' %}
+    {% set text = 'razprseni oblacki' %}
+{% elif vreme.weather.0.description == 'broken clouds' %}
+    {% set img = '04d.png' %}
+    {% set text = 'delno oblacno' %}
+{% elif vreme.weather.0.description == 'shower rain' %}
+    {% set img = '09d.png' %}
+    {% set text = 'dezna prha =)' %}
+{% elif vreme.weather.0.description == 'rain' %}
+    {% set img = '10d.png' %}
+    {% set text = 'dez' %}
+{% elif vreme.weather.0.description == 'thunderstorm' %}
+    {% set img = '11d.png' %}
+    {% set text = 'nevihta' %}
+{% elif vreme.weather.0.description == 'snow' %}
+    {% set img = '13d.png' %}
+    {% set text = 'snezi' %}
+{% elif vreme.weather.0.description == 'mist' %}
+    {% set img = '50d.png' %}
+    {% set text = 'megla' %}
+
+
+{% endif %}
+<img src="http://openweathermap.org/img/w/{{ img }}" alt="{{ vreme.weather.0.description }}" width="70%" height="70%">
+<h4> {{ text }} </h4>
+    </div>
+        </div></div></div>
+</div>
+{% endblock pozdrav %}

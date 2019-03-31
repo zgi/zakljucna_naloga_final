@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+{% block title %}Stiki{% endblock title %}
+{% block stiki %}
+
+ <div class="row justify-content-md-center">
+{% if naslovi %}
+{% for naslov in naslovi %}
+<div class="col-auto border p-2 bg-white">
+<h4><a class="nounderline" href="/novo?email={{ naslov }}">{{ naslov }}</a></h4>
+</div>
+{% endfor %}
+ </div>
+{% else %}
+<div class="col-auto border p-2 bg-white">
+    <div class="row">
+        <div class="col-sm">
+        <h3>Ni stikov</h3></a></p>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock stiki %}

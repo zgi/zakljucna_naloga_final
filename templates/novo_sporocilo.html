@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+{% block title %}Novo sporocilo{% endblock title %}
+{% block novo_sporocilo %}
+<div class="col-sm border p-2 bg-white">
+<h2>Napisi novo sporocilo</h2>
+
+<form method="POST" action="/novo">
+    <div class="row">
+    <div class="col-sm">
+    <input type="text" class="form-control form-control-auto" pattern="[a-zA-Z0-9!#$%&amp;'*+\/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*" name="naslovnik" value="{{ email }}" placeholder="e-naslov prejemnika" required>
+    </div>
+    <div class="col-sm">
+    <input type="text" class="form-control form-control-auto" name="zadeva" placeholder="Zadeva sporocila">
+    </div>
+    </div>
+    <div class="row">
+        <div class="col m-4">
+    <textarea class="w-100 p-2" name="sporocilo" placeholder="Vnesi sporocilo" required rows="20"></textarea>
+        </div>
+    </div>
+    <input class="btn btn-dark" type="submit" value="Poslji">
+
+</form>
+</div>
+{% endblock novo_sporocilo %}

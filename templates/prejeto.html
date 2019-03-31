@@ -1,0 +1,50 @@
+{% extends 'index.html' %}
+{% block title %}Prejeto{% endblock title %}
+{% block prejeto %}
+
+{%if sporocila %}
+{% for sporocilo in sporocila %}
+<div class="col-sm border p-2 bg-white">
+    <div class="row">
+        <div class="col-sm">
+        <p>Zadeva: <a class="nounderline {% if sporocilo.prebrano %} to-black {% endif %} " href="/preberi/{{ sporocilo.key.id() }}"><h3 class="shorText">{{ sporocilo.zadeva }}</h3></a></p>
+        </div>
+        <div class="col-sm">
+        <h5>Od: <a class="nounderline" href="/novo?email={{ sporocilo.posiljatelj }}">{{ sporocilo.posiljatelj }}</a></h5>
+        </div>
+        <div class="col-3">
+        <!--{% if sporocilo.prebrano %}-->
+            <!--<p>Prebrano</p>-->
+        <!--{% else %}-->
+            <!--<p>Novo</p>-->
+        <!--{% endif %}-->
+        <h6>Prejeto: {{ sporocilo.nastanek }}</h6>
+        </div>
+    </div>
+    <div class="row justify-content-center p-2">
+        <div class="col-11 border">
+            <p>{{ sporocilo.kratko_sporocilo }}</p>
+        </div>
+    </div>
+        <div class="row p-3">
+            <div class="col">
+            <button class="btn btn-dark" onclick="location.href = '/novo?email={{ sporocilo.posiljatelj }}'">Odgovori</button>
+            <button class="btn btn-danger" onclick="izbrisi({{ sporocilo.key.id() }})">Izbrisi</button>
+            </div>
+        </div>
+
+
+
+</div>
+{% endfor %}
+
+{% else %}
+<div class="col-sm border p-2 bg-white">
+    <div class="row">
+        <div class="col-sm">
+        <h3>Ni sporocil</h3></a></p>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock prejeto %}
